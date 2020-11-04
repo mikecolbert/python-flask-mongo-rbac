@@ -1,3 +1,11 @@
+#added MWC
+# dotenv file
+.env
+
+#virtual environment
+venv/
+###### MWC
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} User Edit {% endblock %}
+
+
+{% block body %} 
+
+<h3>Edit an account</h3>
+  <hr>
+  {% if user %}
+  <form method="POST" action="{{ url_for('admin_update_user', user_id=user['_id']) }}">
+
+        <p> <label  for="first_name"> First Name: </label>    
+        <input type="text" id="first_name" name="first_name" required autofocus value="{{ user['first_name'] }}"></p>
+
+        <p> <label  for="last_name"> Last Name: </label>    
+        <input type="text" id="last_name" name="last_name" required value="{{ user['last_name'] }}" ></p>
+
+        <p> <label  for="email"> Email: </label>    
+        <input type="text" id="email" name="email" required value="{{ user['email'] }}"></p>
+    
+        <p> <label  for="password"> Password: </label>    
+        <input type="text" id="password" name="password" required value="{{ user['password'] }}"></p>
+    
+        <p> <label  for="confirm_password"> Confirm password: </label>    
+        <input type="text" id="confirm_password" name="confirm_password" required value="{{ user['password'] }}"></p>
+        <p> 
+        <label for="role">Role :</label>
+        <select name="role" >
+        {% for role in all_roles %}
+           <option value="{{ role['role_name'] }}"{% if role['role_name'] == user['role'] %} SELECTED {% endif %}>{{ role['role_name'] }}</option>    
+           {% endfor %}
+        
+          </select>
+        </p>
+        <p> <label  for="date_added"> Date Added: </label>    
+            <input type="text" id="date_added" name="date_added" required value="{{ user['date_added'] }}" readonly></p>
+            <p> <label  for="date_modified"> Date Modifed: </label>    
+                <input type="text" id="date_modified" name="date_modified" required value="{{ user['date_modified'] }}" readonly></p>
+
+        <p>  
+    <input type="submit" value="Update User"></p>
+
+  </form>
+  
+{% endif %}
+
+{% endblock %}

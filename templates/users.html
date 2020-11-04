@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %} My Recipes Administration {% endblock %}
+
+
+{% block body %} 
+
+<h1>Admin Page</h1>
+<hr>
+<p>My recipes admin page</p>
+<h3>Create your account</h3>
+  <hr>
+  <form method="POST" action="/admin/add-user">
+
+    <p> <label  for="first_name"> First Name: </label>    
+    <input type="text" id="first_name" name="first_name" required autofocus ></p>
+
+    <p> <label  for="last_name"> Last Name: </label>    
+    <input type="text" id="last_name" name="last_name" required ></p>
+
+    <p> <label  for="email"> Email: </label>    
+    <input type="text" id="email" name="email" required ></p>
+
+    <p> <label  for="password"> Password: </label>    
+    <input type="text" id="password" name="password" required ></p>
+
+    <p> <label  for="confirm_password"> Confirm password: </label>    
+    <input type="text" id="confirm_password" name="confirm_password" required ></p>
+    <p> 
+    <label for="role">Role :</label>
+    <select name="role" required>
+        <option value="" selected disabled hidden> -- Choose role -- </option>
+        {% for role in all_roles %}
+       <option value="{{ role['role_name'] }}">{{ role['role_name'] }}</option>
+    {% endfor %}
+    </select>
+    </p>
+    <p>  
+<input type="submit" value="Add User"></p>
+
+</form>
+  <hr>
+
+  <br>
+  {% if all_users %}
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Date Added</th>
+                <th>Date Modified</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in all_users %}
+            <tr>
+                
+                <td> {{ row['first_name'] }}</td>
+                <td> {{ row['last_name'] }}</td>
+                <td> {{ row['email'] }}</td>
+                <td> {{ row['role'] }}</td>
+                <td> {{ row['date_added'] }}</td>
+                <td> {{ row['date_modified'] }}</td>
+            
+                <td><form action="{{ url_for('admin_delete_user', user_id=row['_id']) }}" method="POST">
+                    <input type="submit" value="Delete"  />
+                </form>    </td>
+
+                <td><form action="{{ url_for('admin_edit_user', user_id=row['_id']) }}" method="POST">
+                    <input type="submit" value="Details"  />
+                </form>    </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}
