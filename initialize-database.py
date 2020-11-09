@@ -1,5 +1,7 @@
 import pymongo
 import datetime
+import os
+from dotenv import load_dotenv
 
 ## necessary for python-dotenv ##
 APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
@@ -20,42 +22,42 @@ categories = db['categories']
 
 def add_role(role_name):
     role_data = {
-        'Role Name': role_name
+        'role_name': role_name
     }
     return roles.insert_one(role_data)
 
 
 def add_category(category_name):
     category_data = {
-        'Category Name': category_name
+        'category_name': category_name
     }
     return categories.insert_one(category_data)
 
 
 def add_user(first_name, last_name, email, password, role):
     user_data = {
-        'First Name': first_name,
-        'Last Name': last_name,
-        'Email': email,
-        'Password': password,
-        'Role': role,
-        'Date Added': datetime.datetime.now(),
-        'Date Modified': datetime.datetime.now()
+        'first_name': first_name,
+        'last_name': last_name,
+        'email': email,
+        'password': password,
+        'role': role,
+        'date_added': datetime.datetime.now(),
+        'date_modified': datetime.datetime.now()
     }
     return users.insert_one(user_data)
 
 
 def add_recipe(recipe_name, category, ingredients, preparation, notes, first_name, last_name):
     recipe_data = {
-        'Recipe Name': recipe_name,
-        'Category': category,
-        'Ingredients': ingredients,
-        'Preparation': preparation,
-        'Notes': notes,
-        'First Name': first_name,
-        'Last Name': last_name,
-        'Date Added': datetime.datetime.now(),
-        'Date Modified': datetime.datetime.now()
+        'recipe_name': recipe_name,
+        'category': category,
+        'ingredients': ingredients,
+        'preparation': preparation,
+        'notes': notes,
+        'first_name': first_name,
+        'last_name': last_name,
+        'date_added': datetime.datetime.now(),
+        'date_modified': datetime.datetime.now()
     }
     return recipes.insert_one(recipe_data)
 
