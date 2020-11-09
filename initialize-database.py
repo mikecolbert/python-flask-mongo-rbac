@@ -1,9 +1,14 @@
 import pymongo
 import datetime
 
-client = pymongo.MongoClient(
-    "mongodb+srv://recipe-app:ph3pL9RlFpjQMVaP@cluster0.upbc3.mongodb.net/recipe_app?retryWrites=true&w=majority")
-#db = client.test
+## necessary for python-dotenv ##
+APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
+dotenv_path = os.path.join(APP_ROOT, '.env')
+load_dotenv(dotenv_path)
+
+mongo = os.getenv('MONGO')
+
+client = pymongo.MongoClient(mongo)
 
 db = client['recipe_app']
 
@@ -61,14 +66,15 @@ def initial_database():
     contributor = add_role('contributor')
     user = add_role('user')
 
+    # add users
+    mike = add_user('Mike', 'Colbert', 'mike@mike.com', 'abc123', 'admin')
+
     # add categories
     main = add_category('Main dishes')
     drink = add_category('Drinks')
     desserts = add_category('Desserts')
 
-    # add users
-    mike = add_user('Mike', 'Colbert', 'mike@mike.com', 'abc123', 'admin')
-
+   
     # add recipe
     chicken_parmesean = add_recipe('Chicken Parmesean', 'Main dishes',
                                    'chicken', 'cook it good', 'cook it real good', 'Mike', 'Colbert')
@@ -76,11 +82,6 @@ def initial_database():
 
 def main():
     initial_database()
-
-    all_roles = roles.find()
-    for doc in all_roles:
-        print(doc)
-    
-
+   
 
 main()

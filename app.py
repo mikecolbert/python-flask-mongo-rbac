@@ -9,7 +9,7 @@ import bcrypt
 from functools import wraps
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '*8k2liy*0'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 ## necessary for python-dotenv ##
 APP_ROOT = os.path.join(os.path.dirname(__file__), '..')   # refers to application_top
@@ -89,7 +89,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/register')
-def signup():
+def register():
     return 'self register for an account'
 
 
