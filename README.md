@@ -46,7 +46,7 @@ To use this role-based access control template
 
 2.  You can get the Mongo connection should be completed with values from your database user in Atlas.
 
-MONGO = "mongodb+srv://*<span style="color:green">REPLACE_ME_WITH_YOUR_DATABASE_USER:REPLACE_ME_WITH_YOUR_DATABASE_USER_PASSWORD</span>*@cluster0.upbc3.mongodb.net/*<span style="color:green">REPLACE_ME_WITH_YOUR_DATABASE_NAME</span>*?retryWrites=true&w=majority"
+MONGO = "mongodb+srv://*REPLACE_ME_WITH_YOUR_DATABASE_USER:REPLACE_ME_WITH_YOUR_DATABASE_USER_PASSWORD*@cluster0.upbc3.mongodb.net/*REPLACE_ME_WITH_YOUR_DATABASE_NAME*?retryWrites=true&w=majority"
 
-3.  Createa  secret key.
-SECRET_KEY = "*<span style="color:green">REPLACE_ME_WITH_YOUR_SECRET_KEY_HERE</span>*"
+3.  Create a  secret key.
+SECRET_KEY = "*REPLACE_ME_WITH_YOUR_SECRET_KEY_HERE*"
